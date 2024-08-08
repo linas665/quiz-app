@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-green{
+    @apply bg-green-700
+}
+
+.bg-red{
+    @apply bg-red-700
+}
