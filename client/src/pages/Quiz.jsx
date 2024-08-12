@@ -1,58 +1,45 @@
 import React, { useState } from "react";
 
-const Quiz = ({ data, index }) => {
-  console.log(data.options);
+const Quiz = ({ data, index, handleNext, handlePoint }) => {
+  console.log(data);
   const [selectedOption, setSelectedOption] = useState(null);
   const [correctOption, setCorrectOption] = useState(null);
 
-  const [point, setPoint] = useState(0)
 
-  const handleValid = (option, event) => {
-    console.log(index);
 
-    setSelectedOption(option.optionText);
-    setCorrectOption(option.isCorrect);
+  const handleValid = (getOption, event) => {
+    console.log(getOption.isCorrect);
+    // event.target.classList.add("hover")
 
-    if(option.isCorrect) {
-      setPoint(point+5)
-    }
-
-    // Update the background color of the clicked button
-    event.target.classList.add(option.isCorrect ? "bg-green" : "bg-red");
-
-    // Optionally, remove the background color of previously selected button
-    // if you want to reset it when another option is clicked
-    document.querySelectorAll(".option-button").forEach((button) => {
-      if (button !== event.target) {
-        button.classList.remove("bg-green", "bg-red");
-      }
-    });
+    getOption.isCorrect && handlePoint()
+    handleNext()
   };
 
   return (
     <div className="flex flex-col gap-5 justify-center items-center">
-      <h1>Points: {point}</h1>
       <div className=" w-max grid gap-3">
         <h1>
           {index}. {data.questionText}
         </h1>
-        <div>
+        <div className="flex flex-col gap-2 justify-end items-end">
           {data.options.map((option, index) => (
-            <div key={Math.random()} className="flex flex-col gap-2 p-1">
+            <div key={index} className="w-full">
               <button
-                onClick={(event) => handleValid(option, event)}
-                className={`option-button border w-64 flex ${
-                  selectedOption === option.optionText
-                    ? correctOption
-                      ? "bg-green-700"
-                      : "bg-red-700"
-                    : ""
-                }`}
+                onClick={(event) => {
+                  handleValid(option, event);
+                }}
+                className={`option-button hover:bg-black hover:text-white border w-full flex px-2 py-1 rounded-md`}
               >
                 {option.optionText}
               </button>
             </div>
           ))}
+          <button
+            className="border  w-max px-2 border-gray-200 rounded-md"
+            onClick={handleNext}
+          >
+            Next
+          </button>
         </div>
       </div>
     </div>
