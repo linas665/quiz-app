@@ -30,7 +30,7 @@ const Home = () => {
     fetchQuiz();
   }, []);
 
-  console.log(quiz.length);
+  console.log(quiz);
 
   return (
     <div className="w-full h-[90svh] flex gap-3 justify-center items-center flex-col">
@@ -40,7 +40,7 @@ const Home = () => {
             key={index}
             handleNext={handleNext}
             handlePoint={handlePoint}
-            data={quiz[order]}
+            data={quiz[index]}
             index={index + 1}
           />
         ) : null

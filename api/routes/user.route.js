@@ -24,7 +24,7 @@ app.post('/add-new-question', async (req, res) => {
 
         // Check if all fields are provided
         if (!questionText || !options || !Array.isArray(options) || options.length !== 4) {
-            return res.status(400).json({ message: "All fields are required and options must be an array of exactly 4 items." });
+            return res.status(400).json({ message: "All fields are required and options must be an array of exactly 4 items."});
         }
 
         // Check if each option has the required fields

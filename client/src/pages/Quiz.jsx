@@ -2,9 +2,6 @@ import React, { useState } from "react";
 
 const Quiz = ({ data, index, handleNext, handlePoint }) => {
   console.log(data);
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [correctOption, setCorrectOption] = useState(null);
-
 
 
   const handleValid = (getOption, event) => {
@@ -22,7 +19,7 @@ const Quiz = ({ data, index, handleNext, handlePoint }) => {
           {index}. {data.questionText}
         </h1>
         <div className="flex flex-col gap-2 justify-end items-end">
-          {data.options.map((option, index) => (
+          {data.options &&   data.options.map((option, index) => (
             <div key={index} className="w-full">
               <button
                 onClick={(event) => {
